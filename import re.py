@@ -4,9 +4,6 @@ from collections import Counter
 from datetime import datetime
 parsed_data = []
 
-
-console = Console()
-
 # This is a 'raw' string (r"") so backslashes don't break
 log_pattern = r'(?P<ip>\d{1,3}(?:\.\d{1,3}){3})\s+.*?\s+\[(?P<timestamp>.*?)\]\s+"(?P<request>.*?)"\s+(?P<status>\d{3})'
 
@@ -192,3 +189,4 @@ with col_right:
     ip_df = pd.DataFrame(suspect_ips.most_common(10), columns=['IP Address', '404 Count'])
 
     st.dataframe(ip_df, use_container_width=True)
+
