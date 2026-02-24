@@ -3,18 +3,7 @@ import os
 from collections import Counter
 from datetime import datetime
 parsed_data = []
-from rich.console import Console
-from rich.table import Table
-from rich.panel import Panel
-from rich.columns import Columns
-# ANSI escape codes for terminal "painting"
-BLUE = '\033[94m'
-CYAN = '\033[96m'
-GREEN = '\033[92m'
-YELLOW = '\033[93m'
-RED = '\033[91m'
-BOLD = '\033[1m'
-ENDC = '\033[0m'
+
 
 console = Console()
 
@@ -201,4 +190,5 @@ with col_right:
     st.subheader("🏴 Highest Risk IP Addresses")
     # Show your suspect_ips Counter
     ip_df = pd.DataFrame(suspect_ips.most_common(10), columns=['IP Address', '404 Count'])
+
     st.dataframe(ip_df, use_container_width=True)
