@@ -85,27 +85,6 @@ for entry in parsed_data:
 for ip, count in suspect_ips.items():
     if count > 5:
         flagged_ips.add(ip) 
-print(f"\n{BLUE}{'━'*50}{ENDC}")
-print(f"{BOLD}{CYAN}  🛡️  CYBER-SENTRY | DISTRIBUTED BOTNET DETECTOR{ENDC}")
-print(f"{BLUE}{'━'*50}{ENDC}")
-
-# Row 1: The Stats
-print(f"{BOLD}ANALYSIS SUMMARY:{ENDC}")
-print(f" • Status: {GREEN}COMPLETE{ENDC}")
-print(f" • Log Entries: {BOLD}{len(parsed_data)}{ENDC}")
-print(f" • Malicious Probes: {RED}{len(failed_requests)}{ENDC}")
-print(f" • Unique Attackers: {RED}{BOLD}{len(flagged_ips)}{ENDC}")
-
-print(f"\n{BOLD}TEMPORAL SIGNATURE:{ENDC}")
-peak_hour = sorted(hourly_errors.items(), key=lambda x: x[1], reverse=True)[0]
-print(f" • Peak Attack Window: {YELLOW}{peak_hour[0]}:00 - {peak_hour[0]+1}:00{ENDC} ({peak_hour[1]} hits)")
-
-print(f"\n{BOLD}TOP BLOCKLIST CANDIDATES:{ENDC}")
-for ip, count in suspect_ips.most_common(3):
-    print(f" [{RED}BLOCK{ENDC}] {ip.ljust(15)} | {count} attempts")
-
-print(f"{BLUE}{'━'*50}{ENDC}")
-print(f"{GREEN}✔ Threat Intelligence exported to threat_intel.csv{ENDC}\n")
 
 import streamlit as st
 import re
@@ -189,4 +168,5 @@ with col_right:
     ip_df = pd.DataFrame(suspect_ips.most_common(10), columns=['IP Address', '404 Count'])
 
     st.dataframe(ip_df, use_container_width=True)
+
 
